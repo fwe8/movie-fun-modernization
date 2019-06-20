@@ -16,6 +16,11 @@ repositories {
     mavenCentral()
 }
 
+task deploy(type: Exec, dependsOn: 'assemble') {
+    executable "sh"
+    args "-c", "cf push movie-fun-app -p build/libs/movie-fun-app-1.1.0-SNAPSHOT.war --random-route"
+}
+
 apply plugin: "java"
 apply plugin: "war"
 apply plugin: "org.springframework.boot"
