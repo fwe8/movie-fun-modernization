@@ -27,4 +27,8 @@ public class AlbumsClient {
     public List<AlbumInfo> getAlbums() {
         return restOperations.exchange(albumUrl + "/liste", GET, null, albumListType).getBody();
     }
+
+    public AlbumInfo find(long albumId) {
+        return restOperations.exchange(albumUrl + "/albumDetail/" + albumId, GET, null, AlbumInfo.class).getBody();
+    }
 }
