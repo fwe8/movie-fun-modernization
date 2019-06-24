@@ -1,0 +1,24 @@
+---
+applications:
+  - name: album-service
+    path: /home/pal_user/workspace/movie-fun-modernization/applications/album-service/build/libs/album-service-1.1.0-SNAPSHOT.jar
+    routes:
+      - route: album-service-pal-fh.apps.evans.pal.pivotal.io
+    services:
+      - album-database
+      - photo-storage
+  - name: movie-service
+    path: /home/pal_user/workspace/movie-fun-modernization/applications/movie-service/build/libs/movie-service-1.1.0-SNAPSHOT.jar
+    routes:
+      - route: movie-service-pal-fh.apps.evans.pal.pivotal.io
+    services:
+      - movies-database
+  - name: movie-fun-app
+    path: /home/pal_user/workspace/movie-fun-modernization/applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+    routes:
+      - route: movie-fun-app-pal-fh.apps.evans.pal.pivotal.io
+    env:
+      MOVIES_URL: https://movie-service-pal-fh.apps.evans.pal.pivotal.io/movies
+      ALBUMS_URL: https://album-service-pal-fh.apps.evans.pal.pivotal.io/albums
+    services:
+      - photo-storage

@@ -1,0 +1,14 @@
+
+applications:
+  - name: movie-fun-app
+    path: /home/pal_user/workspace/movie-fun-modernization/applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+    routes:
+      - route: movie-fun-app-pal-fh.apps.evans.pal.pivotal.io
+    memory: 1G
+    instances: 1
+    env:
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 1.8.+ } }'
+      MOVIES_URL: movie-service-pal-fh.apps.evans.pal.pivotal.io
+      ALBUMS_URL: album-service-pal-fh.apps.evans.pal.pivotal.io
+    services:
+      - photo-storage

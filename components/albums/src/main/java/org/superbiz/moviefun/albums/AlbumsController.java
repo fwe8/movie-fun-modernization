@@ -15,13 +15,14 @@ import org.superbiz.moviefun.blobstore.BlobStore;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import static java.lang.String.format;
 import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 
-@Controller
+@RestController
 @RequestMapping("/albums")
 public class AlbumsController {
 
@@ -39,6 +40,11 @@ public class AlbumsController {
     public String index(Map<String, Object> model) {
         model.put("albums", albumsBean.getAlbums());
         return "albums";
+    }
+
+    @GetMapping("/liste")
+    public List<Album> albumList() {
+        return albumsBean.getAlbums();
     }
 
     @GetMapping("/{albumId}")
@@ -61,6 +67,12 @@ public class AlbumsController {
         }
 
         return format("redirect:/albums/%d", albumId);
+    }
+
+    @PostMapping("")
+    public void addAlbum(Album album) {
+        logger.debug("Adding album {}", album);
+        albumsBean.addAlbum(album);
     }
 
     @GetMapping("/{albumId}/cover")

@@ -1,0 +1,13 @@
+
+applications:
+  - name: album-service
+    path: /home/pal_user/workspace/movie-fun-modernization/applications/album-service/build/libs/album-service-1.1.0-SNAPSHOT.jar
+    routes:
+      - route: album-service-pal-fh.apps.evans.pal.pivotal.io
+    memory: 1G
+    instances: 1
+    env:
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 1.8.+ } }'
+    services:
+      - album-database
+      - photo-storage

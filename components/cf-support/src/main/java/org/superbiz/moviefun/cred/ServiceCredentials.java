@@ -1,10 +1,10 @@
-package org.superbiz.moviefun;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+package org.superbiz.moviefun.cred;
 
 import java.io.IOException;
 import java.util.Objects;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ServiceCredentials {
 
