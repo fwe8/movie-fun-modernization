@@ -8,13 +8,21 @@ group = "org.superbiz"
 version = "1.1.0-SNAPSHOT"
 description = "OpenEJB :: Web Examples :: Moviefun"
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+    }
+}
+
 dependencies {
     compile project(":components:movie-fun-api")
     compile project(":components:cf-support")
 
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-tomcat"
-
+    compile "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:$springSecurityOAuthAutoconfigVersion"
+    compile "io.pivotal.spring.cloud:spring-cloud-sso-connector:$springCloudSsoVersion"
+    compile "org.springframework.security:spring-security-taglibs"
     compile "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.7.0"
     compile "taglibs:standard:1.1.2"
     compile "javax.servlet:jstl:1.2"

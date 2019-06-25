@@ -1,5 +1,8 @@
 server.port: 8082
 
+application:
+  oauth-enabled: true
+
 spring:
   jpa:
     properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
@@ -14,5 +17,5 @@ spring:
       initial-size: 4
 
 logging.level:
-  root: WARN
+  root: DEBUG
   org.superbiz.moviefun: DEBUG
