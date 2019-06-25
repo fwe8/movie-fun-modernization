@@ -19,3 +19,4 @@ albums:
   url: //album-service/albums
 movies:
   url: //movie-service/movies
+  pagesize: 4
