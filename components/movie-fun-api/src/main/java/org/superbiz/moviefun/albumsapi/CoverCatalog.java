@@ -40,9 +40,7 @@ public class CoverCatalog {
     Blob getCover(long albumId) throws IOException {
         boolean fail = Math.random() > 0.5;
         logger.warn("Calling getCover in Hystrix Command Fail=" + fail);
-        if (fail) {
-            throw new IOException("Failing.");
-        }
+
         Optional<Blob> maybeCoverBlob = blobStore.get(coverBlobName(albumId));
 
         return maybeCoverBlob.orElseGet(this::buildDefaultCoverBlob);
