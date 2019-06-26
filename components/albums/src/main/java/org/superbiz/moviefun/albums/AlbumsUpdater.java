@@ -48,7 +48,7 @@ public class AlbumsUpdater {
             return;
         }
 
-        List<Album> albumsToHave = CsvUtils.readFromCsv(objectReader, maybeBlob.get().inputStream);
+        List<Album> albumsToHave = CsvUtils.INSTANCE.readFromCsv(objectReader, maybeBlob.get().inputStream);
         List<Album> albumsWeHave = albumsRepository.getAlbums();
 
         createNewAlbums(albumsToHave, albumsWeHave);
@@ -84,7 +84,11 @@ public class AlbumsUpdater {
 
     private Album addIdToAlbumIfExists(List<Album> existingAlbums, Album album) {
         Optional<Album> maybeExisting = existingAlbums.stream().filter(album::isEquivalent).findFirst();
-        maybeExisting.ifPresent(existing -> album.setId(existing.getId()));
-        return album;
+        if (maybeExisting.isPresent()) {
+            Album a = maybeExisting.get();
+            return a.copy(album.getId(), a.getArtist(), a.getTitle(), a.getYear(), a.getRating());
+        } else {
+            return album;
+        }
     }
 }
